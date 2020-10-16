@@ -1,0 +1,24 @@
+{
+  "name": "jquery-server-side-calculator",
+  "version": "1.0.0",
+  "description": "[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakestucky/jquery-server-side-calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakestucky/jquery-server-side-calculator/issues"
+  },
+  "homepage": "https://github.com/jakestucky/jquery-server-side-calculator#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
