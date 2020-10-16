@@ -21,7 +21,7 @@ let calcSolution;
 // GET /calculator
 // Respond with array of calc solves
 app.get('/calculator', (req, res) => {
-  let queryText = `SELECT * FROM "calc_history" ORDER BY "id" DESC LIMIT 10;`;
+  let queryText = `SELECT * FROM "calc_history" ORDER BY "time" DESC LIMIT 10;`;
   pool
     .query(queryText)
     .then((result) => {
@@ -71,7 +71,7 @@ app.post('/calculator', (req, res) => {
         req.body.firstNumber,
         req.body.mathOperator,
         req.body.secondNumber,
-        '1',
+        calcSolution,
       ])
 
       .then(() => {
@@ -82,6 +82,7 @@ app.post('/calculator', (req, res) => {
         console.error('Error completing child info post query', err);
         res.sendStatus(500);
       });
+    return calcSolution;
   }
 
   // add new key to object

@@ -1,3 +1,10 @@
 body {
   background-color: paleturquoise;
 }
+.calcContainer {
+  background-color: #dbd5d5;
+  width: 50%;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 5px;
+}

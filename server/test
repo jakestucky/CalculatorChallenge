@@ -1,0 +1,12 @@
+ const queryText = `SELECT * FROM "calc_history" ORDER BY "id" DESC LIMIT 10;`;
+  pool
+    .query(queryText)
+
+    .then(() => {
+      console.log('we are sending:', pool.query);
+      res.send(result.rows)
+    })
+    .catch((err) => {
+      console.error('Error completing child info post query', err);
+      res.sendStatus(500);
+    });

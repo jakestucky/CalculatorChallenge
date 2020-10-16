@@ -1,5 +1,8 @@
 console.log('in Client.JS');
 $(document).ready(onReady);
+
+setInterval(refreshCalculator, 500);
+
 let newMathObject;
 function onReady() {
   console.log('IM ready');
@@ -16,7 +19,7 @@ function onReady() {
 }
 //the logic here is to clear any existing data value and then add data-oper with button clicked
 function additionClick() {
-  $('#firstNumberIn').data('');
+  // $('#firstNumberIn').data('');
   $('#firstNumberIn').data('oper', '+');
   console.log('should set data-oper to add');
 }
@@ -39,12 +42,12 @@ function delOnClick() {
 }
 
 function divisionClick() {
-  $('#firstNumberIn').data('');
+  // $('#firstNumberIn').data('');
   $('#firstNumberIn').data('oper', '/');
   console.log('should set data-oper to divide');
 }
 function multiplyClick() {
-  $('#firstNumberIn').data('');
+  // $('#firstNumberIn').data('');
   $('#firstNumberIn').data('oper', '*');
   console.log('should set data-oper to multi');
 }
@@ -75,7 +78,7 @@ function solutionClick() {
   refreshCalculator();
 }
 function subtractionClick() {
-  $('#firstNumberIn').data('');
+  // $('#firstNumberIn').data('');
   $('#firstNumberIn').data('oper', '-');
   console.log('should set data-oper to sub');
 }
@@ -109,7 +112,6 @@ function equalsClick() {
           console.log('ruh-roh', errorInfo);
         });
       //refresh the dom and show all items
-      refreshCalculator();
     } else {
       alert('all fields must be fulled, and an operator selected');
       return false;
@@ -118,17 +120,19 @@ function equalsClick() {
     alert('all fields must be fulled, and an operator selected');
     return false;
   }
+  refreshCalculator();
 }
+
 function refreshCalculator() {
   $.ajax({
     url: '/calculator',
     method: 'GET',
   })
-    .then((serverSideCalcArray) => {
-      console.log('We got a response!', serverSideCalcArray);
+    .then((databaseCalcRows) => {
+      console.log('We got a response!', databaseCalcRows[0].solution);
       // Render the activities
       $('tbody').empty();
-      for (let numbers of serverSideCalcArray) {
+      for (let numbers of databaseCalcRows) {
         $('tbody').append(`
         <tr class="solutionsDisplay">
         <span>
@@ -139,9 +143,10 @@ function refreshCalculator() {
          </span>
           </tr>
       `);
-        $('#calcSolution').text(numbers.solution);
+        //set the displayed value to be the first item in the 10 object array
+        $('#calcSolution').text(databaseCalcRows[0].solution);
         //reset the data-oper to '' to trigger the check/fail logic
-        $('#firstNumberIn').data('oper', '');
+        // $('#firstNumberIn').data('oper', '');
       }
     })
     .catch(function (errorInfo) {
