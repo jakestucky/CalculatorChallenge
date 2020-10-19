@@ -89,17 +89,9 @@ app.post('/calculator', (req, res) => {
   newMathObject.solution = calcSolution;
 });
 app.delete('/calculator', (req, res) => {
-  let queryText = ` DROP TABLE "calc_history";
- 
- CREATE TABLE "calc_history" (
-    "id" SERIAL PRIMARY KEY,
-    "firstNumber" VARCHAR (80) NOT NULL,
-  "mathOperator" VARCHAR (80) NOT NULL,
-  "secondNumber" VARCHAR (80) NOT NULL,
-    "solution" VARCHAR (80) NOT NULL,
-    "time" TIME DEFAULT NOW()
-    )
-   ;`;
+  let queryText = `
+DELETE  FROM "calc_history"
+  `;
   pool
     .query(queryText)
     .then((result) => {
