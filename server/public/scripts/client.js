@@ -129,11 +129,12 @@ function refreshCalculator() {
     method: 'GET',
   })
     .then((databaseCalcRows) => {
-      console.log('We got a response!', databaseCalcRows[0].solution);
+      console.log('We got a response!', databaseCalcRows);
       // Render the activities
-      $('tbody').empty();
-      for (let numbers of databaseCalcRows) {
-        $('tbody').append(`
+      {
+        $('tbody').empty();
+        for (let numbers of databaseCalcRows) {
+          $('tbody').append(`
         <tr class="solutionsDisplay">
         <span>
           <td id="firstNum" data-value"${numbers.firstNumber}">${numbers.firstNumber}</td>
@@ -143,14 +144,15 @@ function refreshCalculator() {
          </span>
           </tr>
       `);
-        //set the displayed value to be the first item in the 10 object array
-        $('#calcSolution').text(databaseCalcRows[0].solution);
-        //reset the data-oper to '' to trigger the check/fail logic
-        // $('#firstNumberIn').data('oper', '');
+          //set the displayed value to be the first item in the 10 object array
+          $('#calcSolution').text(databaseCalcRows[0].solution);
+          //reset the data-oper to '' to trigger the check/fail logic
+          // $('#firstNumberIn').data('oper', '');
+        }
       }
-    })
-    .catch(function (errorInfo) {
-      console.log('Something bad happened!', errorInfo);
-      alert('Server is down, try again later');
-    }); // end of AJAX .then(
+    }) //end AJAX .then
+    .catch(() => {
+      //default value for empty DB in the event get fails
+      $('#calcSolution').text(' ');
+    }); // end of AJAX .catch
 } //end for loop
