@@ -112,6 +112,10 @@ function equalsClick() {
           console.log('ruh-roh', errorInfo);
         });
       //refresh the dom and show all items
+      //clear the inputs to ready for next calc
+      $('#firstNumberIn').val('');
+      $('#secondNumberIn').val('');
+      $('#firstNumberIn').data('oper', '');
     } else {
       alert('all fields must be fulled, and an operator selected');
       return false;
