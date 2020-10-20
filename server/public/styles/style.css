@@ -1,5 +1,6 @@
 body {
   background-color: paleturquoise;
+  text-align: center;
 }
 .calcContainer {
   background-color: #dbd5d5;
@@ -7,4 +8,18 @@ body {
   margin: 20px auto;
   padding: 25px;
   border-radius: 5px;
+}
+table {
+  margin-left: 40%;
+}
+
+button {
+  border: none;
+  color: white;
+  background-color: gray; /* Green */
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  vertical-align: middle;
+  font-size: 20px;
 }

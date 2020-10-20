@@ -111,7 +111,7 @@ function equalsClick() {
         .catch(function (errorInfo) {
           console.log('ruh-roh', errorInfo);
         });
-      //refresh the dom and show all items
+
       //clear the inputs to ready for next calc
       $('#firstNumberIn').val('');
       $('#secondNumberIn').val('');
@@ -148,15 +148,15 @@ function refreshCalculator() {
          </span>
           </tr>
       `);
-          //set the displayed value to be the first item in the 10 object array
+          //set the displayed value to be the first item in the 10 object array AKA most recent
           $('#calcSolution').text(databaseCalcRows[0].solution);
           //reset the data-oper to '' to trigger the check/fail logic
           // $('#firstNumberIn').data('oper', '');
-        }
+        } //end for of loop logic
       }
     }) //end AJAX .then
     .catch(() => {
       //default value for empty DB in the event get fails
       $('#calcSolution').text(' ');
     }); // end of AJAX .catch
-} //end for loop
+}
