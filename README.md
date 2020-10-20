@@ -1,6 +1,5 @@
-# Project Name
+# Synchronous Calculator Challenge
 
-Synchronous Calculator Challenge
 
 ## Description
 
